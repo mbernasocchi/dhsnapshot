@@ -6,7 +6,12 @@ our %conf;
 $conf{'basedir'} = get_basedir();
 $conf{'emptydir'} = "$conf{'basedir'}/__emptydir/";
 
-require 'dhsnapshot.conf';
+use File::Basename;
+use Cwd 'abs_path';
+my $bd = dirname(abs_path($0));
+my $conf_file = "$bd/dhsnapshot.conf";
+require $conf_file;
+
 
 my $lowest_interval = 'daily';
 my %rotation;
